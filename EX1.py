@@ -1,9 +1,10 @@
-from progress.bar import Bar
-import time
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from botCmd import *
 
-bar = Bar('Как сильно я тебя люблю?', max=100)
+app = ApplicationBuilder().token("6063923731:AAGaYTf6oNnAZ96bIVR7pdXNzrO269--KEQ").build()
 
-for i in range(1000):
-    time.sleep(0.01)
-    bar.next()
-bar.finish()
+app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("calc", calc))
+
+app.run_polling()
